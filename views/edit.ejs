@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Main styles -->
+    <link rel="stylesheet" href="/edit.css"> <!-- Edit specific styles -->
+</head>
+<body>
+    <div class="edit-container">
+        <h1>Edit Blog</h1>
+        <form action="/blogs/<%= id %>/edit" method="POST">
+            <input type="text" name="title" value="<%= blog.title %>" required>
+            <input type="text" name="name" value="<%= blog.name %>" required>
+            <textarea name="content" required><%= blog.content %></textarea>
+            <button type="submit" class="button">Update Blog</button>
+        </form>
+        <a href="/blogs" class="cancel-link">Cancel</a>
+    </div>
+</body>
+</html>

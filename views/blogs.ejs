@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Main styles -->
+    <link rel="stylesheet" href="/blogs.css"> <!-- Blogs specific styles -->
+</head>
+<body>
+    <div class="blogs-container">
+        <h1>Blogs</h1>
+        <form action="/blogs" method="POST">
+            <input type="text" name="title" placeholder="Blog Title" required>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <textarea name="content" placeholder="Blog Content" required></textarea>
+            <button type="submit" class="button">Create Blog</button>
+        </form>
+        <ul>
+            <% blogs.forEach((blog, index) => { %>
+                <li>
+                    <h2><%= blog.title %></h2>
+                    <p><strong>By:</strong> <%= blog.name %></p>
+                    <p><%= blog.content %></p>
+                    
+                    <!-- Action buttons for Edit and Delete -->
+                    <div class="blog-actions">
+                        <a href="/blogs/<%= index %>/edit" class="button">Edit</a>
+                        <form action="/blogs/<%= index %>/delete" method="POST" style="display:inline;">
+                            <button type="submit" class="button">Delete</button>
+                        </form>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <h3>Comments:</h3>
+                    <ul>
+                        <% blog.comments.forEach(comment => { %>
+                            <li><strong><%= comment.user %>:</strong> <%= comment.comment %></li>
+                        <% }) %>
+                    </ul>
+                    <form action="/blogs/<%= index %>/comments" method="POST">
+                        <textarea name="comment" placeholder="Add a comment" required></textarea>
+                        <button type="submit" class="button">Comment</button>
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+        <form action="/logout" method="POST">
+            <button type="submit" class="button">Logout</button>
+        </form>
+
+        <!-- Search Form -->
+        <form action="/blogs/search" method="GET">
+            <input type="text" name="query" placeholder="Search blogs..." required>
+            <button type="submit" class="button">Search</button>
+        </form>
+    </div>
+</body>
+</html>
