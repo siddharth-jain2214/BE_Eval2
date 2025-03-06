@@ -1,42 +1,36 @@
-/* index.css */
-
-/* General styles for the container */
 .container {
     text-align: center;
-    margin-top: 100px; /* Center the content vertically */
+    margin-top: 100px;
 }
 
-/* Style for the main title */
 h1 {
     font-size: 2.5em;
-    color: #4CAF50; /* Green color for the title */
+    color: #4CAF50;
     margin-bottom: 30px;
 }
 
-/* Button styles */
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between buttons */
+    gap: 20px;
 }
 
 .button {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    padding: 15px 30px; /* Padding for buttons */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline */
-    font-size: 1.2em; /* Increase font size */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049;
 }
 
-/* Background color for the body */
 body {
-    background-color: #f0f8ff; /* Light blue background */
-    font-family: Arial, sans-serif; /* Font family */
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
 }

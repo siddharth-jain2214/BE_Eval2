@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 let blogs = [];
 let users = [];
 
-// Load users and blogs from JSON files
+
 const loadUsersFromFile = () => {
   if (fs.existsSync("users.json")) {
     users = JSON.parse(fs.readFileSync("users.json"));
@@ -45,16 +45,14 @@ const saveBlogsToFile = () => {
   fs.writeFileSync("blogs.json", JSON.stringify(blogs, null, 2));
 };
 
-// Load data on startup
 loadUsersFromFile();
 loadBlogsFromFile();
 
-// Home route
+
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// User Registration
 app.get("/register", (req, res) => {
   res.render("register");
 });
@@ -70,7 +68,6 @@ app.post("/register", (req, res) => {
   res.redirect("/login");
 });
 
-// User Login
 app.get("/login", (req, res) => {
   res.render("login");
 });
@@ -85,7 +82,7 @@ app.post("/login", (req, res) => {
   res.send("Invalid credentials");
 });
 
-// Blog Routes
+
 app.get("/blogs", (req, res) => {
   if (!req.session.user) {
     return res.redirect("/login");
@@ -104,7 +101,6 @@ app.post("/blogs", (req, res) => {
   res.redirect("/blogs");
 });
 
-// Commenting System
 app.post("/blogs/:id/comments", (req, res) => {
   const blogId = req.params.id;
   const { comment } = req.body;
@@ -119,8 +115,6 @@ app.post("/blogs/:id/comments", (req, res) => {
   res.redirect("/blogs");
 });
 
-// Search Functionality
-// Search Functionality
 app.get("/blogs/search", (req, res) => {
   const query = req.query.query.toLowerCase();
   const userBlogs = blogs.filter(blog => 
@@ -128,7 +122,7 @@ app.get("/blogs/search", (req, res) => {
     (blog.title.toLowerCase().includes(query) || blog.content.toLowerCase().includes(query))
   );
 
-  // Render a new view for search results
+  
   if (userBlogs.length > 0) {
     res.render("searchResults", { blogs: userBlogs });
   } else {
@@ -136,7 +130,7 @@ app.get("/blogs/search", (req, res) => {
   }
 });
 
-// Edit Blog
+
 app.get("/blogs/:id/edit", (req, res) => {
   if (!req.session.user) {
     return res.redirect("/login");
@@ -163,7 +157,7 @@ app.post("/blogs/:id/edit", (req, res) => {
   res.redirect("/blogs");
 });
 
-// Delete Blog
+
 app.post("/blogs/:id/delete", (req, res) => {
   if (!req.session.user) {
     return res.status(403).send("Unauthorized");
@@ -177,13 +171,12 @@ app.post("/blogs/:id/delete", (req, res) => {
   res.redirect("/blogs");
 });
 
-// Logout
+
 app.post("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

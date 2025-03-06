@@ -1,4 +1,4 @@
-/* Reset some default styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -88,7 +88,7 @@ li p {
 
 li .blog-actions a,
 li .blog-actions form {
-    margin-right: 10px; /* Add some space between the edit link and delete button */
+    margin-right: 10px;
 }
 
 h3 {
@@ -96,5 +96,5 @@ h3 {
 }
 
 textarea {
-    resize: vertical; /* Allow vertical resizing only */
+    resize: vertical; 
 }

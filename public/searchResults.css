@@ -1,85 +1,75 @@
-/* searchResults.css */
-
-/* General styles for the search results container */
 .search-results-container {
-    width: 80%; /* Set a width for the container */
-    max-width: 800px; /* Maximum width */
-    margin: 50px auto; /* Center the container */
-    padding: 20px; /* Padding around the content */
-    background-color: #ffffff; /* White background for the form */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 10px; /* Rounded corners */
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
-/* Style for the main title */
 h1 {
     font-size: 2.5em;
-    color: #4CAF50; /* Green color for the title */
-    margin-bottom: 20px; /* Space below the title */
-    text-align: center; /* Center the title */
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Blog list styles */
 ul {
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove padding */
+    list-style-type: none;
+    padding: 0;
 }
 
 li {
-    margin-bottom: 20px; /* Space between blog entries */
-    padding: 15px; /* Padding for each blog entry */
-    border: 1px solid #e0e0e0; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
 }
 
-/* Input field styles */
 textarea {
-    width: 100%; /* Full width */
-    padding: 15px; /* Padding for inputs */
-    margin: 10px 0; /* Space between inputs */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 1em; /* Font size */
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
-/* Button styles */
 .button {
-    background-color: #007BFF; /* Bright blue background */
-    color: white; /* White text */
-    padding: 10px 15px; /* Padding for button */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 1em; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
-    display: inline-block; /* Inline block for buttons */
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block;
 }
 
 .button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3;
 }
 
-/* Comments section styles */
 h3 {
-    margin-top: 15px; /* Space above comments section */
-    color: #333; /* Dark gray color */
+    margin-top: 15px;
+    color: #333;
 }
 
-/* Link styles */
 .back-link {
-    display: inline-block; /* Make the link behave like a button */
-    margin-top: 20px; /* Space above the link */
-    color: #007BFF; /* Link color */
-    text-decoration: none; /* Remove underline */
-    font-size: 1em; /* Font size */
+    display: inline-block;
+    margin-top: 20px;
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 1em;
 }
 
 .back-link:hover {
-    text-decoration: underline; /* Underline on hover */
+    text-decoration: underline;
 }
 
-/* Background color for the body */
 body {
-    background: linear-gradient(to right, #f0f4c3, #ffffff); /* Light gradient background */
-    font-family: Arial, sans-serif; /* Font family */
+    background: linear-gradient(to right, #f0f4c3, #ffffff);
+    font-family: Arial, sans-serif;
 }
