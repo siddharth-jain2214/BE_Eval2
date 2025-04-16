@@ -8,7 +8,7 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-app.use(bodyParser.urlencoded({ extended: true })); //third party middlewares // body parser
+app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static("public"));
 app.use(
   session({
@@ -19,7 +19,7 @@ app.use(
 );
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));// ejs
+app.set("views", path.join(__dirname, "views"));
 
 let blogs = [];
 let users = [];
@@ -61,7 +61,7 @@ app.post("/register", (req, res, next) => {
   try {
     if (users.some((user) => user.username === username)) {
       const err = new Error("Username already exists! Try a different one.");
-      err.statusCode = 400; // Bad Request
+      err.statusCode = 400; 
       return next(err);
     }
     const hashedPassword = bcrypt.hashSync(password, 8);
@@ -83,7 +83,7 @@ app.post("/login", (req, res, next) => {
     const user = users.find((u) => u.username === username);
     if (!user || !bcrypt.compareSync(password, user.password)) {
       const err = new Error("Invalid credentials");
-      err.statusCode = 401; // Unauthorized
+      err.statusCode = 401;
       return next(err);
     }
     req.session.user = user;
@@ -97,7 +97,7 @@ app.get("/blogs", (req, res, next) => {
   try {
     if (!req.session.user) {
       const err = new Error("Unauthorized access to blogs");
-      err.statusCode = 403; // Forbidden
+      err.statusCode = 403; 
       return next(err);
     }
     const userBlogs = blogs.filter(blog => blog.user === req.session.user.username);
@@ -145,10 +145,73 @@ app.post("/blogs/:id/comments", (req, res, next) => {
   }
 });
 
+app.get("/blogs/:id/edit", (req, res, next) => {
+  const blogId = req.params.id;
+  try {
+    if (!req.session.user) {
+      const err = new Error("Unauthorized");
+      err.statusCode = 403; // Forbidden
+      return next(err);
+    }
+    const blog = blogs[blogId];
+    if (!blog || blog.user !== req.session.user.username) {
+      const err = new Error("Blog not found or unauthorized");
+      err.statusCode = 404; // Not Found
+      return next(err);
+    }
+    res.render("edit", { blog, id: blogId });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post("/blogs/:id/edit", (req, res, next) => {
+  const blogId = req.params.id;
+  const { title, content } = req.body;
+  try {
+    if (!req.session.user) {
+      const err = new Error("Unauthorized");
+      err.statusCode = 403; // Forbidden
+      return next(err);
+    }
+    if (!blogs[blogId] || blogs[blogId].user !== req.session.user.username) {
+      const err = new Error("Blog not found or unauthorized");
+      err.statusCode = 404; // Not Found
+      return next(err);
+    }
+    blogs[blogId] = { title, user: req.session.user.username, content, name: blogs[blogId].name, comments: blogs[blogId].comments };
+    saveBlogsToFile();
+    res.redirect("/blogs");
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post("/blogs/:id/delete", (req, res, next) => {
+  const blogId = req.params.id;
+  try {
+    if (!req.session.user) {
+      const err = new Error("Unauthorized");
+      err.statusCode = 403; // Forbidden
+      return next(err);
+    }
+    if (!blogs[blogId] || blogs[blogId].user !== req.session.user.username) {
+      const err = new Error("Blog not found or unauthorized");
+      err.statusCode = 404; // Not Found
+      return next(err);
+    }
+    blogs.splice(blogId, 1);
+    saveBlogsToFile();
+    res.redirect("/blogs");
+  } catch (error) {
+    next(error);
+  }
+});
+
 app.get("/blogs/search", (req, res, next) => {
   const query = req.query.query.toLowerCase();
   try {
-    if (!req .session.user) {
+    if (!req.session.user) {
       const err = new Error("Unauthorized");
       err.statusCode = 403; // Forbidden
       return next(err);
