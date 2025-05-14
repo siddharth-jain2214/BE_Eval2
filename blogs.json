@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "title": "intro",
+    "user": "sid1234",
+    "content": "heyy",
+    "name": "siddharth",
+    "comments": [
+      {
+        "user": "sid1234",
+        "comment": "amazing post"
+      }
+    ]
+  }
+]
